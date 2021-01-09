@@ -8,7 +8,7 @@ A docker installation. How to install [docker](https://docs.docker.com/install/ 
 # usage
 To get the image write the follow command
 
-` docker pull catcoder/lempstack72 `
+` docker pull catcoder/lempstack74 `
 
 This install the image on your Docker installation
 
@@ -16,7 +16,7 @@ This install the image on your Docker installation
 
 Once you have pulled the image, to create a container run the follow command:
 
-` docker run -p 8081:80 --name lempstack72Container catcoder/lempstack72 `
+` docker run -p 8081:80 --name lempstack72Container catcoder/lempstack74 `
 
 This will run a server on your [Localhost](http://localhost:8081 "Docker installation").
 
@@ -31,7 +31,7 @@ This section provides an overview of Docker’s default networking behavior, inc
 
 Create a container associated to the new network
 
-` docker run -tid --net myDockerNetwork --ip 172.19.0.1 -p 8082:80 -v $(pwd):/var/www/sites --name expressive catcoder/lempstack72 `
+` docker run -tid --net myDockerNetwork --ip 172.19.0.1 -p 8082:80 -v $(pwd):/var/www/sites --name expressive catcoder/lempstack74 `
 
 # Redis
 Pull the [Redis image](https://hub.docker.com/_/redis "Docker installation") and see the details to create a container.
@@ -43,3 +43,10 @@ Create a new redis container associated to the new network
 Now you can listen redis from your first container (expressive)
 
 Check the example on this [repository](https://github.com/catcoderphp/expressive-example/blob/master/src/App/Services/RedisConnector.php "Docker installation")
+
+# MongoDB
+MongoDB connector support!!
+
+Just install mongodb image from dockerhub
+
+` docker run --net myDockerNetwork --ip 172.19.0.3 --name mongo_server -d mongo `
