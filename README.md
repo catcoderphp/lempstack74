@@ -45,8 +45,12 @@ Now you can listen redis from your first container (expressive)
 Check the example on this [repository](https://github.com/catcoderphp/expressive-example/blob/master/src/App/Services/RedisConnector.php "Docker installation")
 
 # MongoDB
+
 MongoDB connector support!!
 
 Just install mongodb image from dockerhub
 
 ` docker run --net myDockerNetwork --ip 172.19.0.3 --name mongo_server -d mongo `
+
+# Maintainer
+Catcoder <catcoder.php@gmail.com>
