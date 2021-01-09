@@ -1,0 +1,20 @@
+server {
+        listen 80;
+
+        root /var/www/sites/web;
+        index index.php ini.php ini2.php;
+
+        server_name _;
+
+        location / {
+        try_files $uri $uri/ /index.php$is_args$args;
+        }
+
+        location ~ \.php$ {
+        # CHANGED in Nginx 1.6.2
+        include snippets/fastcgi-php.conf;
+        fastcgi_pass unix:/var/run/php/php7.4-fpm.sock;
+        }
+}
+
+
