@@ -56,10 +56,14 @@ RUN apt-get install -y  curl \
     nano \ 
     git \
     supervisor \
-    vim 
+    vim \
+    net-tools 
 ENV MYSQL_PWD qwerty
 RUN echo "mysql-server mysql-server/root_password password $MYSQL_PWD" | debconf-set-selections
 RUN echo "mysql-server mysql-server/root_password_again password $MYSQL_PWD" | debconf-set-selections
+RUN mkdir -p /var/cache/php-fpm/DoctrineMongoODMModule/Proxy
+run mkdir -p /var/cache/php-fpm/DoctrineMongoODMModule/Hydrator
+run chmod 777 -R /var/cache/
 RUN apt-get -y install mysql-server 
 RUN useradd -s /bin/bash sites
 RUN mkdir -p /var/www/sites/web
@@ -70,6 +74,7 @@ ADD index.php /var/www/sites/web
 ADD site /etc/nginx/sites-available/
 RUN rm -r /etc/nginx/sites-enabled/default
 RUN ln -s /etc/nginx/sites-available/site /etc/nginx/sites-enabled/
+RUN echo "clear_env = no" >> /etc/php/7.4/fpm/php-fpm.conf
 #CREATING A SOCKET FILE TO START FPM FROM SUPERVISORD
 RUN service php7.4-fpm start
 RUN curl -sS https://getcomposer.org/installer -o composer-setup.php
